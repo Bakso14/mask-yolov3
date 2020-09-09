@@ -86,10 +86,10 @@ def predict(image):
 
     # apply non-maxima suppression to suppress weak, overlapping bounding boxes
     idxs = cv2.dnn.NMSBoxes(boxes, confidences, threshold, 0.1)
-
+    
+    mask = np.zeros(image.shape, np.uint8)
     # ensure at least one detection exists
     if len(idxs) > 0:
-        mask = np.zeros(image.shape, np.uint8)
         # loop over the indexes we are keeping
         for i in idxs.flatten():
             # extract the bounding box coordinates
@@ -110,20 +110,19 @@ def predict(image):
 
 
 # Execute prediction on a single image
-img = cv2.imread("video_1_ 01.jpg")
+img = cv2.imread("images/video_1_ 01.jpg")
 img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-image = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 display_img(predict(img))
 
 
 ### Apply Yolov3 for object dectection on a video
 
-cap =cv2.VideoCapture('Manyar.mp4')
+cap =cv2.VideoCapture('Autonomous_Car/Manyar Kertoarjo.mp4')
 
 number_frame = 30.0 #higher frames better quality of the video
 video_size = (1280,720)
 fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-out = cv2.VideoWriter('hasil_manyar.mp4',fourcc, number_frame,video_size)
+out = cv2.VideoWriter('hasil_manyar_mask.mp4',fourcc, number_frame,video_size)
 
 while True:
     ret,frame = cap.read() 
