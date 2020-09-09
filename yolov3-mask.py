@@ -86,10 +86,10 @@ def predict(image):
 
     # apply non-maxima suppression to suppress weak, overlapping bounding boxes
     idxs = cv2.dnn.NMSBoxes(boxes, confidences, threshold, 0.1)
-
+    
+    mask = np.zeros(image.shape, np.uint8)
     # ensure at least one detection exists
     if len(idxs) > 0:
-        mask = np.zeros(image.shape, np.uint8)
         # loop over the indexes we are keeping
         for i in idxs.flatten():
             # extract the bounding box coordinates
