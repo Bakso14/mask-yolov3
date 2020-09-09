@@ -16,15 +16,15 @@ def display_img(img,cmap=None):
     
 # Load the COCO class labels in which our YOLO model was trained on
 
-labelsPath = os.path.join("Weight/yolo.names")
+labelsPath = os.path.join("yolo.names")
 LABELS = open(labelsPath).read().strip().split("\n")
 
 # The COCO dataset contains 80 different classes
 LABELS
 
 # derive the paths to the YOLO weights and model configuration
-weightsPath = os.path.join("Weight/yolov3_custom_train_2000.weights")
-configPath = os.path.join("Weight/yolov3_custom_train.cfg")
+weightsPath = os.path.join("yolov3_custom_train_2000.weights")
+configPath = os.path.join("yolov3_custom_train.cfg")
 
 # Loading the neural network framework Darknet (YOLO was created based on this framework)
 net = cv2.dnn.readNetFromDarknet(configPath,weightsPath)
@@ -110,7 +110,7 @@ def predict(image):
 
 
 # Execute prediction on a single image
-img = cv2.imread("Weight/video_1_ 01.jpg")
+img = cv2.imread("video_1_ 01.jpg")
 img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 image = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 display_img(predict(img))
@@ -118,7 +118,7 @@ display_img(predict(img))
 
 ### Apply Yolov3 for object dectection on a video
 
-cap =cv2.VideoCapture('Weight/Manyar.mp4')
+cap =cv2.VideoCapture('Manyar.mp4')
 
 number_frame = 30.0 #higher frames better quality of the video
 video_size = (1280,720)
