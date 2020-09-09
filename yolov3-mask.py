@@ -23,7 +23,7 @@ LABELS = open(labelsPath).read().strip().split("\n")
 LABELS
 
 # derive the paths to the YOLO weights and model configuration
-weightsPath = os.path.join("yolov3_custom_train_2000.weights")
+weightsPath = os.path.join("yolov3_custom_train_5000.weights")
 configPath = os.path.join("yolov3_custom_train.cfg")
 
 # Loading the neural network framework Darknet (YOLO was created based on this framework)
