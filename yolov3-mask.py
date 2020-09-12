@@ -126,6 +126,7 @@ fourcc = cv2.VideoWriter_fourcc(*'DIVX')
 out = cv2.VideoWriter('hasil_manyar.mp4',fourcc, number_frame,video_size)
 
 while True:
+    start = time.time()
     ret,frame = cap.read() 
     
     if ret:
@@ -134,6 +135,11 @@ while True:
         frame = predict(frame)
         cv2.imshow("image",frame)
         out.write(frame)
+        
+        stop = time.time()
+        seconds = stop - start
+        fps = 1 / seconds
+        print("Estimated frames per second : {0}".format(fps))
 
         if cv2.waitKey(1) & 0xff == ord("q"):
             break
